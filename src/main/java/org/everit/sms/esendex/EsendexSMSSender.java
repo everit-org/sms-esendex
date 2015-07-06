@@ -15,9 +15,6 @@
  */
 package org.everit.sms.esendex;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import org.everit.sms.api.SMSSender;
 
 import esendex.sdk.java.EsendexException;
@@ -61,8 +58,7 @@ public class EsendexSMSSender implements SMSSender {
     try {
       messagingService.sendMessage(accountReference, messageRequest);
     } catch (EsendexException e) {
-      Logger.getGlobal().log(Level.WARNING, e.getMessage(), e);
-      throw new RuntimeException(e);
+      throw new RuntimeException("SMS sending failed.", e);
     }
   }
 
