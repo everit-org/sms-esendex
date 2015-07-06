@@ -29,9 +29,9 @@ import esendex.sdk.java.service.auth.UserPassword;
  */
 public class EsendexSMSSender implements SMSSender {
 
-  private String accountReference;
+  private final String accountReference;
 
-  private MessagingService messagingService;
+  private final MessagingService messagingService;
 
   /**
    * Constructor to set up the EsendexSMSSender.
