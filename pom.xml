@@ -24,7 +24,7 @@
 
   <groupId>org.everit.sms</groupId>
   <artifactId>org.everit.sms.esendex</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0</version>
 
   <packaging>bundle</packaging>
   <name>Everit - Esendex SMS Sender</name>
@@ -93,7 +93,7 @@
     <dependency>
       <groupId>org.everit.sms</groupId>
       <artifactId>org.everit.sms.api</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
+      <version>1.0.0</version>
     </dependency>
     <dependency>
       <groupId>org.everit.osgi.bundles</groupId>
