@@ -15,14 +15,14 @@
  */
 package org.everit.sms.esendex;
 
-import org.everit.sms.api.SMSSender;
-
 import esendex.sdk.java.EsendexException;
 import esendex.sdk.java.ServiceFactory;
 import esendex.sdk.java.model.domain.request.SmsMessageRequest;
 import esendex.sdk.java.service.BasicServiceFactory;
 import esendex.sdk.java.service.MessagingService;
 import esendex.sdk.java.service.auth.UserPassword;
+
+import org.everit.sms.SMSSender;
 
 /**
  * Esendex based implementation od the SMSSender interface.
@@ -45,7 +45,9 @@ public class EsendexSMSSender implements SMSSender {
    */
   public EsendexSMSSender(final String username, final String password,
       final String accountReference) {
+
     this.accountReference = accountReference;
+
     UserPassword userPassword = new UserPassword(username, password);
     BasicServiceFactory serviceFactory =
         ServiceFactory.createBasicAuthenticatingFactory(userPassword);
@@ -54,11 +56,15 @@ public class EsendexSMSSender implements SMSSender {
 
   @Override
   public void sendSMS(final String recipientNumber, final String message) {
+
     SmsMessageRequest messageRequest = new SmsMessageRequest(recipientNumber, message);
+
     try {
       messagingService.sendMessage(accountReference, messageRequest);
     } catch (EsendexException e) {
-      throw new RuntimeException("SMS sending failed.", e);
+      throw new RuntimeException("Failed to send the SMS "
+          + "to recipientNumber [" + recipientNumber + "] "
+          + "with message [" + message + "]", e);
     }
   }
 
